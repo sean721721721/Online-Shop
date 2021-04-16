@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { makeStyles } from '@material-ui/core/styles';
+import { useProductContext } from '../../contexts';
 
 const useStyles = makeStyles({
   productList: {
@@ -14,16 +15,20 @@ const useStyles = makeStyles({
 });
 
 function ProductList () {
+  const products = useProductContext();
+  console.log(products)
+  if (!products) {
+    return <div/>
+  }
+  const productCards = products.map(product => {
+    return <ProductCard key={product.id} product={product} inCart={false}/>
+  })
+
   const classes = useStyles();
   return (
     <React.Fragment>
       <div className={classes.productList}>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+        {productCards}
       </div>
     </React.Fragment>
   );

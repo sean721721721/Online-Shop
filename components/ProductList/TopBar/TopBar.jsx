@@ -10,9 +10,6 @@ import Link from 'next/link';
 const useStyles = makeStyles({
   menu: {
     justifyContent: 'space-between'
-  },
-  menuButton: {
-    marginRight: '16px'
   }
 });
 
@@ -21,14 +18,14 @@ export default function TopBar () {
   return (
     <AppBar color="default" position="fixed">
       <Toolbar className={classes.menu}>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <IconButton edge="start" color="primary" aria-label="menu">
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">
-          Online Shopping
+        <Typography variant="h6" color="primary">
+          PetPet
         </Typography>
         <Link href="/cart">
-          <ShoppingCartIcon fontSize="small"/>
+          <ShoppingCartIcon color="primary"/>
         </Link>
       </Toolbar>
     </AppBar>

@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
-export default function Home (props) {
-  console.log(props);
+export default function Home () {
   useEffect(() => {
     const { pathname } = Router
     if (pathname === '/') {
@@ -21,28 +19,4 @@ export default function Home (props) {
     //   </Link>
     // </h1>
   )
-}
-
-export async function getStaticProps () {
-  // Instead of the file system,
-  // fetch post data from an external API endpoint
-  const client = new ApolloClient({
-    uri: 'https://api.spacex.land/graphql/',
-    cache: new InMemoryCache()
-  });
-  const { data } = await client.query({
-    query: gql`
-    query getProduct {
-      listProduct(id:[45], name_like:[]) {
-        id,
-        title,
-      }
-    }
-    `
-  });
-
-  console.log(data)
-  return {
-    props: { data },
-  }
 }
