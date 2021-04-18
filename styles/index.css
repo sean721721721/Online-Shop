@@ -1,8 +1,9 @@
-span {
+span, div{
     font-family: 'Noto Sans TC', sans-serif;
 }
 
 body {
     /* background-color: #f8f8f8; */
     background-color: rgb(237, 243, 253);
+    margin: 0px;
 }
