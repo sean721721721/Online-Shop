@@ -21,7 +21,6 @@ interface ShoppingCartProps {
 
 export default function ShoppingCart (props: ShoppingCartProps) {
   const { cartItems, products } = props;
-  console.log('carItems: ', cartItems)
   if (!cartItems || !products) {
     return <div/>
   }

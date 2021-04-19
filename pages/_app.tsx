@@ -1,6 +1,7 @@
 import { AppWrapper } from '../contexts';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
+import { AppProps } from 'next/app';
 import '../styles/index.css';
 
 const client = new ApolloClient({
@@ -8,9 +9,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-function MyApp ({ Component, pageProps }) {
-  console.log(Component)
-  console.log(pageProps)
+function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <AppWrapper>

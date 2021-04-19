@@ -26,7 +26,6 @@ interface ProductCartProps {
 
 export default function ProductCard (props: ProductCartProps) {
   const { product, inCart, cartId, amount } = props;
-  console.log(props)
   const imgName = product.img.split('/')[2];
   const classes = useStyles(props);
   return (

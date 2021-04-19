@@ -31,7 +31,6 @@ export default function checkoutSuccess () {
   const classes = useStyles();
   const [addOrder] = useMutation(ADD_ORDER);
   useEffect(() => {
-    console.log('ADD_ORDER');
     addOrder({ refetchQueries: [{ query: LIST_CART }] });
   });
   return (

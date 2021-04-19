@@ -31,10 +31,9 @@ const useStyles = makeStyles({
 
 export default function Cart () {
   const classes = useStyles();
-  const cartItems = useCartContext();
+  const cartItems = useCartContext() ? useCartContext() : [];
   const products = useProductContext();
   const total = totalPrice(cartItems, products);
-  console.log(total)
   return (
     <React.Fragment>
       <AppBar color="default" position="fixed">

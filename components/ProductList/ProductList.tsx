@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 function ProductList () {
   const products = useProductContext();
-  if (!products) {
+  if (!products || products === []) {
     return <div/>
   }
   const productCards = products.map(product => {

@@ -5,7 +5,6 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import { useMutation } from '@apollo/client';
 import { ADD_CART, LIST_CART, UPDATE_CART } from '../../../../lib/api';
 import { useCartContext } from '../../../../contexts';
@@ -114,24 +113,38 @@ export default function ProductContent (props: ProductContentProps) {
   const amountDiv = amount
     ? <div className={classes.amountDiv}>
         <div>
-          <IconButton color="default" className={classes.iconButtom} aria-label="delete">
-            <RemoveIcon onClick={() => updateCart('minus')}/>
+          <IconButton
+            color="default"
+            className={classes.iconButtom}
+            aria-label="delete"
+            onClick={() => updateCart('minus')}>
+            <RemoveIcon/>
           </IconButton>
         </div>
         <div>{amount}</div>
         <div>
-          <IconButton color="default" className={classes.iconButtom} aria-label="delete">
-            <AddIcon onClick={() => updateCart('plus')}/>
+          <IconButton
+            color="default"
+            className={classes.iconButtom}
+            aria-label="delete"
+            onClick={() => updateCart('plus')}>
+            <AddIcon/>
           </IconButton>
         </div>
       </div>
     : '';
   const showAddOrDeleteIcon = inCart
-    ? <IconButton className={classes.iconButtom} aria-label="delete">
-        <DeleteForeverIcon color="disabled" onClick={() => updateCart('delete')}/>
+    ? <IconButton
+        className={classes.iconButtom}
+        aria-label="delete"
+        onClick={() => updateCart('delete')}>
+        <DeleteForeverIcon color="disabled"/>
       </IconButton>
-    : <Fab color="primary" size="small" className={classes.fab}>
-        <AddShoppingCartIcon fontSize="small" color="default" onClick={() => updateCart('add')}/>
+    : <Fab
+        color="primary"
+        size="small"
+        onClick={() => updateCart('add')}>
+        <AddShoppingCartIcon fontSize="small" color="inherit"/>
       </Fab>
 
   return (
