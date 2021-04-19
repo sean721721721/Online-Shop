@@ -5,7 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import React from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_ORDER, LIST_CART } from '../../lib/api';
+import React, { useEffect } from 'react';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +29,11 @@ const useStyles = makeStyles({
 
 export default function checkoutSuccess () {
   const classes = useStyles();
+  const [addOrder] = useMutation(ADD_ORDER);
+  useEffect(() => {
+    console.log('ADD_ORDER');
+    addOrder({ refetchQueries: [{ query: LIST_CART }] });
+  });
   return (
     <React.Fragment>
       <AppBar color="default" position="fixed">

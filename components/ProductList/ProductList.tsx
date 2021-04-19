@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { makeStyles } from '@material-ui/core/styles';
-import { useCartContext, useProductContext } from '../../contexts';
+import { useProductContext } from '../../contexts';
 
 const useStyles = makeStyles({
   productList: {

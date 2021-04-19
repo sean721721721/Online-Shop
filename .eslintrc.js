@@ -21,6 +21,8 @@ module.exports = {
   ],
   rules: {
     semi: 0,
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   }
 }

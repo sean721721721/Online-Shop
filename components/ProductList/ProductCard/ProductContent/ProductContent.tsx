@@ -6,6 +6,7 @@ import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import { useMutation } from '@apollo/client';
 import { ADD_CART, LIST_CART, UPDATE_CART } from '../../../../lib/api';
 import { useCartContext } from '../../../../contexts';
+import { Product } from 'server/interface';
 
 const useStyles = makeStyles({
   content: props => ({
@@ -52,11 +53,18 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ProductContent (props) {
+interface ProductContentProps {
+  product: Product,
+  inCart: Boolean,
+  amount: number,
+  cartId: string,
+}
+
+export default function ProductContent (props: ProductContentProps) {
   const { product, inCart, amount, cartId } = props;
   const [addToCart] = useMutation(ADD_CART);
   const [updateCartItem] = useMutation(UPDATE_CART);
-  const cartItems = useCartContext()
+  const cartItems = useCartContext();
   const cartItem = cartItems && cartItems.find(
     item => item.productId === product.id);
   function updateCart (type) {

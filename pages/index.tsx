@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import Router from 'next/router';
 
 export default function Home () {
@@ -11,12 +9,6 @@ export default function Home () {
     }
   });
   return (
-    <div></div>
-    // <h1 className="title">
-    //   Read{' '}
-    //   <Link href="/products">
-    //     <a>this page!</a>
-    //   </Link>
-    // </h1>
+    <div/>
   )
 }

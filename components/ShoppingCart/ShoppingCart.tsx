@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { useCartContext, useProductContext } from '../../contexts';
 import ProductCard from '../ProductList/ProductCard/ProductCard';
+import { Cart, Product } from '../../server/interface';
 
 const useStyles = makeStyles({
   shoppingCart: {
@@ -14,9 +14,12 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ShoppingCart (props) {
-  // const cartItems = useCartContext();
-  // const products = useProductContext();
+interface ShoppingCartProps {
+  cartItems: Cart[],
+  products: Product[],
+}
+
+export default function ShoppingCart (props: ShoppingCartProps) {
   const { cartItems, products } = props;
   console.log('carItems: ', cartItems)
   if (!cartItems || !products) {

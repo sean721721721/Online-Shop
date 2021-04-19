@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import ProductContent from './ProductContent/ProductContent';
 import { makeStyles } from '@material-ui/core/styles';
+import { Product } from 'server/interface';
 
 const useStyles = makeStyles({
   productCard: props => ({
@@ -15,8 +16,17 @@ const useStyles = makeStyles({
     flex: props.inCart ? 1 : ''
   })
 });
-export default function ProductCard (props) {
-  const { product, inCart, cartId } = props;
+
+interface ProductCartProps {
+  product: Product,
+  inCart: Boolean,
+  cartId: string,
+  amount: number,
+}
+
+export default function ProductCard (props: ProductCartProps) {
+  const { product, inCart, cartId, amount } = props;
+  console.log(props)
   const imgName = product.img.split('/')[2];
   const classes = useStyles(props);
   return (
@@ -28,7 +38,7 @@ export default function ProductCard (props) {
             height={185}
           />
         </div>
-        <ProductContent product={product} inCart={inCart} amount={props.amount} cartId={cartId}/>
+        <ProductContent product={product} inCart={inCart} amount={amount} cartId={cartId}/>
       </div>
   );
 }

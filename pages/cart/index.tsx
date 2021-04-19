@@ -1,4 +1,3 @@
-import React from 'react';
 import ShoppingCart from '../../components/ShoppingCart/ShoppingCart';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,7 +7,8 @@ import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useCartContext, useProductContext } from '../../contexts';
-import { totalPrice } from '../../lib/api';
+import { totalPrice } from '../../lib/helper';
+import React from 'react';
 
 const useStyles = makeStyles({
   menuButton: {
@@ -33,7 +33,6 @@ export default function Cart () {
   const classes = useStyles();
   const cartItems = useCartContext();
   const products = useProductContext();
-  console.log(cartItems)
   const total = totalPrice(cartItems, products);
   console.log(total)
   return (

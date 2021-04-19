@@ -1,14 +1,15 @@
 import { createContext, useContext } from 'react';
-import { useQuery , gql } from '@apollo/client';
-import {LIST_CART, LIST_PRODUCT, sliceProductsBy} from '../lib/api';
+import { useQuery } from '@apollo/client';
+import { LIST_CART, LIST_PRODUCT } from '../lib/api';
+import { sliceProductsBy } from '../lib/helper';
 import { AMOUNT_OF_SHOWING_PRODUCTS } from '../lib/constants';
+import { AppProps } from 'next/app';
 
 const AppContext = createContext();
 
-export function AppWrapper ({ children }) {
+export function AppWrapper ({ children }: AppProps) {
   const { data: cartItems } = useQuery(LIST_CART);
   const { data: productItems } = useQuery(LIST_PRODUCT);
-  console.log({ cartItems, productItems })
 
   return (
     <AppContext.Provider value={{ cartItems, productItems }}>
