@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
+import PetsIcon from '@material-ui/icons/Pets';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Link from 'next/link';
 
@@ -19,7 +19,7 @@ export default function TopBar () {
     <AppBar color="default" position="fixed">
       <Toolbar className={classes.menu}>
         <IconButton edge="start" color="primary" aria-label="menu">
-          <MenuIcon />
+          <PetsIcon />
         </IconButton>
         <Typography variant="h6" color="primary">
           PetPet

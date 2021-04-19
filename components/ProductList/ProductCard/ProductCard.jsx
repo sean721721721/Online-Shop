@@ -8,7 +8,8 @@ const useStyles = makeStyles({
     borderRadius: '5px',
     border: '1px solid lightgrey',
     boxSizing: 'border-box',
-    display: props.inCart ? 'flex' : 'block'
+    display: props.inCart ? 'flex' : 'block',
+    columnGap: props.inCart ? '4px' : ''
   }),
   productImage: props => ({
     flex: props.inCart ? 1 : ''
@@ -23,8 +24,8 @@ export default function ProductCard (props) {
         <div className={classes.productImage}>
           <Image
             src={`/assets/${imgName}`}
-            width={182}
-            height={182}
+            width={185}
+            height={185}
           />
         </div>
         <ProductContent product={product} inCart={inCart} amount={props.amount} cartId={cartId}/>

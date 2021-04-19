@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { makeStyles } from '@material-ui/core/styles';
-import { useProductContext } from '../../contexts';
+import { useCartContext, useProductContext } from '../../contexts';
 
 const useStyles = makeStyles({
   productList: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 function ProductList () {
   const products = useProductContext();
-  console.log(products)
   if (!products) {
     return <div/>
   }
