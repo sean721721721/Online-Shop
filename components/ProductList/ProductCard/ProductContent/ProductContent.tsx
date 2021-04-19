@@ -1,7 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import { useMutation } from '@apollo/client';
 import { ADD_CART, LIST_CART, UPDATE_CART } from '../../../../lib/api';
@@ -31,6 +34,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     marginTop: '16px',
     marginRight: '0px',
+    marginBottom: '8px',
     color: '#3f51b5',
     '& > div': {
       flex: 2,
@@ -50,6 +54,9 @@ const useStyles = makeStyles({
       display: 'flex',
       alignItems: 'center'
     }
+  },
+  iconButtom: {
+    padding: '4px'
   }
 });
 
@@ -106,14 +113,26 @@ export default function ProductContent (props: ProductContentProps) {
   const classes = useStyles(props);
   const amountDiv = amount
     ? <div className={classes.amountDiv}>
-        <div><IndeterminateCheckBoxIcon onClick={() => updateCart('minus')}/></div>
+        <div>
+          <IconButton color="default" className={classes.iconButtom} aria-label="delete">
+            <RemoveIcon onClick={() => updateCart('minus')}/>
+          </IconButton>
+        </div>
         <div>{amount}</div>
-        <div><AddBoxIcon onClick={() => updateCart('plus')}/></div>
+        <div>
+          <IconButton color="default" className={classes.iconButtom} aria-label="delete">
+            <AddIcon onClick={() => updateCart('plus')}/>
+          </IconButton>
+        </div>
       </div>
     : '';
   const showAddOrDeleteIcon = inCart
-    ? <DeleteForeverIcon color="disabled" onClick={() => updateCart('delete')}/>
-    : <AddShoppingCartIcon fontSize="small" color="primary" onClick={() => updateCart('add')}/>
+    ? <IconButton className={classes.iconButtom} aria-label="delete">
+        <DeleteForeverIcon color="disabled" onClick={() => updateCart('delete')}/>
+      </IconButton>
+    : <Fab color="primary" size="small" className={classes.fab}>
+        <AddShoppingCartIcon fontSize="small" color="default" onClick={() => updateCart('add')}/>
+      </Fab>
 
   return (
     <div className={classes.content}>
