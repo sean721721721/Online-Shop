@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { css } from '@emotion/core';
 import ProductCard from '../ProductList/ProductCard/ProductCard';
 import { Cart, Product } from '../../server/interface';
 import { useLoadingContext } from '../../contexts';
@@ -22,12 +21,6 @@ const useStyles = makeStyles({
     transform: 'translate(-50%,-50%)'
   }
 });
-
-const loarderStyle = css`
-  position: fixed;
-  left: 50%;
-  top: 50%;
-`;
 
 interface ShoppingCartProps {
   cartItems: Cart[],

@@ -9,7 +9,6 @@ import { useMutation } from '@apollo/client';
 import { ADD_CART, LIST_CART, UPDATE_CART } from '../../../../lib/api';
 import { useCartContext, useLoadingContext } from '../../../../contexts';
 import { Product } from 'server/interface';
-import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles({
   content: props => ({
@@ -73,7 +72,7 @@ export default function ProductContent (props: ProductContentProps) {
   const [updateCartItem] = useMutation(UPDATE_CART);
   const cartItems = useCartContext();
   const cartItem = cartItems && cartItems.find(item => item.productId === product.id);
-  const { isLoading, setIsLoading } = useLoadingContext();
+  const { setIsLoading } = useLoadingContext();
 
   function updateCart (type) {
     setIsLoading(true);
