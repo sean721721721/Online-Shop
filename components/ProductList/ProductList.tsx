@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { makeStyles } from '@material-ui/core/styles';
-import { useProductContext } from '../../contexts';
+import PulseLoader from 'react-spinners/PulseLoader';
+import { useProductContext, useLoadingContext } from '../../contexts';
 
 const useStyles = makeStyles({
   productList: {
@@ -11,11 +12,18 @@ const useStyles = makeStyles({
     gridGap: '4px',
     gridAutoFlow: 'row',
     justifyContent: 'center'
+  },
+  loaderDiv: {
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%)'
   }
 });
 
 function ProductList () {
   const products = useProductContext();
+  const { isLoading } = useLoadingContext();
   if (!products || products === []) {
     return <div/>
   }
@@ -28,6 +36,9 @@ function ProductList () {
     <React.Fragment>
       <div className={classes.productList}>
         {productCards}
+        <div className={classes.loaderDiv}>
+          <PulseLoader color={'gray'} loading={isLoading} size={36}/>
+        </div>
       </div>
     </React.Fragment>
   );

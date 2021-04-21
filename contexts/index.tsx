@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { LIST_CART, LIST_PRODUCT } from '../lib/api';
 import { sliceProductsBy } from '../lib/helper';
@@ -10,11 +10,16 @@ const AppContext = createContext();
 export function AppWrapper ({ children }: AppProps) {
   const { data: cartItems } = useQuery(LIST_CART);
   const { data: productItems } = useQuery(LIST_PRODUCT);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(false);
+  }, [cartItems]);
+  const loading = { isLoading, setIsLoading };
   if (!productItems || !cartItems) {
     return <div/>
   }
   return (
-    <AppContext.Provider value={{ cartItems, productItems }}>
+    <AppContext.Provider value={{ cartItems, productItems, loading }}>
       {children}
     </AppContext.Provider>
   );
@@ -32,4 +37,8 @@ export function useProductContext () {
   if (!productItems || !productItems.listProduct) return [];
   const slicebProduct = sliceProductsBy(productItems.listProduct, AMOUNT_OF_SHOWING_PRODUCTS);
   return slicebProduct;
+}
+
+export function useLoadingContext () {
+  return useContext(AppContext).loading;
 }

@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
+import PulseLoader from 'react-spinners/PulseLoader';
+import { css } from '@emotion/core';
 import ProductCard from '../ProductList/ProductCard/ProductCard';
 import { Cart, Product } from '../../server/interface';
+import { useLoadingContext } from '../../contexts';
 
 const useStyles = makeStyles({
   shoppingCart: {
@@ -11,8 +14,20 @@ const useStyles = makeStyles({
       borderBottom: '.5px solid #ccc',
       padding: '8px'
     }
+  },
+  loaderDiv: {
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%)'
   }
 });
+
+const loarderStyle = css`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+`;
 
 interface ShoppingCartProps {
   cartItems: Cart[],
@@ -21,6 +36,7 @@ interface ShoppingCartProps {
 
 export default function ShoppingCart (props: ShoppingCartProps) {
   const { cartItems, products } = props;
+  const { isLoading } = useLoadingContext();
   if (!cartItems || !products) {
     return <div/>
   }
@@ -40,6 +56,9 @@ export default function ShoppingCart (props: ShoppingCartProps) {
   const classes = useStyles();
   return (
       <div className={classes.shoppingCart}>
+        <div className={classes.loaderDiv}>
+          <PulseLoader color={'gray'} loading={isLoading} size={36}/>
+        </div>
         {ProductCards}
       </div>
   );
