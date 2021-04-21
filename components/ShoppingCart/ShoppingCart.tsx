@@ -8,17 +8,11 @@ const useStyles = makeStyles({
   shoppingCart: {
     marginTop: '56px',
     marginBottom: '56px',
-    '& > div': {
+    '& > div:nth-child(1)': {
       border: 'none',
       borderBottom: '.5px solid #ccc',
       padding: '8px'
     }
-  },
-  loaderDiv: {
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)'
   }
 });
 
@@ -49,10 +43,10 @@ export default function ShoppingCart (props: ShoppingCartProps) {
   const classes = useStyles();
   return (
       <div className={classes.shoppingCart}>
-        <div className={classes.loaderDiv}>
+        {ProductCards}
+        <div className='loader'>
           <PulseLoader color={'gray'} loading={isLoading} size={36}/>
         </div>
-        {ProductCards}
       </div>
   );
 }

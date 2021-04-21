@@ -12,12 +12,6 @@ const useStyles = makeStyles({
     gridGap: '4px',
     gridAutoFlow: 'row',
     justifyContent: 'center'
-  },
-  loaderDiv: {
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)'
   }
 });
 
@@ -36,7 +30,7 @@ function ProductList () {
     <React.Fragment>
       <div className={classes.productList}>
         {productCards}
-        <div className={classes.loaderDiv}>
+        <div className='loader'>
           <PulseLoader color={'gray'} loading={isLoading} size={36}/>
         </div>
       </div>
