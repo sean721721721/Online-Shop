@@ -65,7 +65,7 @@ const resolvers: IResolvers = {
         (id.length === 0 || id.includes(product.id)) &&
         (name_like.length === 0 || name_like.find((name: string) => product.title.includes(name)))
       )
-    )
+    ),
   },
   Mutation: {
     addToCart: (_, { productId, amount }: { productId: number; amount: number }) => {
@@ -93,13 +93,13 @@ const resolvers: IResolvers = {
     addOrder: () => {
       cMockCarts = [];
       return delayResponse(true);
-    }
-  }
+    },
+  },
 };
 /** 由於只是 mock 使用，不處理 ts 的部分 */
 export const GQLMockServerSchema = makeExecutableSchema({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 /**
@@ -116,7 +116,7 @@ const cMockProducts: Product[] = Array.from(Array(cMockProductCount), (_, index)
   id: cMockProductCount - index,
   title: 'MockProduct_' + (cMockProductCount - index).toString(),
   price: Math.ceil(Math.random() * 1000),
-  img: `./assets/product${Math.round(Math.random() * cMockProductCount) % 5 + 1}.jpg`
+  img: `./assets/product${Math.round(Math.random() * cMockProductCount) % 5 + 1}.jpg`,
 }));
 
 /** 隨機 pick 商品出來 */

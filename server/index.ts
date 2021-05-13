@@ -52,7 +52,7 @@ export class MyNextServer implements MyNextServerOption {
       '/graphql',
       graphqlHTTP({
         schema: GQLMockServerSchema,
-        graphiql: true
+        graphiql: true,
       })
     );
     this.server.all('*', (req: Request, res: Response) => {

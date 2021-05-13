@@ -4,13 +4,13 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 // import theme from '../src/theme';
 
 export default class MyDocument extends Document {
-  render() {
+  render () {
     return (
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
           {/* <meta name="theme-color" content={theme.palette.primary.main} /> */}
-          <link 
+          <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
           />
@@ -59,10 +59,10 @@ MyDocument.getInitialProps = async (ctx) => {
 
   // Render app and page and get the context of the page with collected side effects.
   const sheets = new ServerStyleSheets();
-  const originalRenderPage = ctx.renderPage;
+  const { renderPage } = ctx;
 
   ctx.renderPage = () =>
-    originalRenderPage({
+    renderPage({
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
     });
 

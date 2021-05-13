@@ -4,27 +4,27 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Product } from 'server/interface';
 
 const useStyles = makeStyles({
-  productCard: props => ({
+  productCard: (props: ProductCardProps) => ({
     backgroundColor: '#fff',
     borderRadius: '5px',
     border: '1px solid lightgrey',
     boxSizing: 'border-box',
     display: props.inCart ? 'flex' : 'block',
-    columnGap: props.inCart ? '4px' : ''
+    columnGap: props.inCart ? '4px' : '',
   }),
   productImage: props => ({
-    flex: props.inCart ? 1 : ''
-  })
+    flex: props.inCart ? 1 : '',
+  }),
 });
 
-interface ProductCartProps {
-  product: Product,
-  inCart: Boolean,
-  cartId: string,
-  amount: number,
+interface ProductCardProps {
+  product: Product;
+  inCart: boolean;
+  cartId?: number;
+  amount?: number;
 }
 
-export default function ProductCard (props: ProductCartProps) {
+export default function ProductCard (props: ProductCardProps) {
   const { product, inCart, cartId, amount } = props;
   const imgName = product.img.split('/')[2];
   const classes = useStyles(props);

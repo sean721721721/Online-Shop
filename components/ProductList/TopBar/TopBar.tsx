@@ -8,26 +8,26 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Link from 'next/link';
 
 const useStyles = makeStyles({
-  menu: {
-    justifyContent: 'space-between'
-  }
+	menu: {
+		justifyContent: 'space-between',
+	},
 });
 
-export default function TopBar () {
-  const classes = useStyles();
-  return (
-    <AppBar color="default" position="fixed">
-      <Toolbar className={classes.menu}>
-        <IconButton edge="start" color="primary" aria-label="menu">
-          <PetsIcon />
-        </IconButton>
-        <Typography variant="h6" color="primary">
-          PetPet
-        </Typography>
-        <Link href="/cart">
-          <ShoppingCartIcon color="primary"/>
-        </Link>
-      </Toolbar>
-    </AppBar>
-  )
+export default function TopBar() {
+	const classes = useStyles();
+	return (
+		<AppBar color="default" position="fixed">
+			<Toolbar className={classes.menu}>
+				<IconButton edge="start" color="primary" aria-label="menu">
+					<PetsIcon />
+				</IconButton>
+				<Typography variant="h6" color="primary">
+					PetPet
+				</Typography>
+				<Link href="/cart">
+					<ShoppingCartIcon color="primary" />
+				</Link>
+			</Toolbar>
+		</AppBar>
+	);
 }
