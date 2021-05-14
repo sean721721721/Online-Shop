@@ -23,8 +23,7 @@ interface ShoppingCartProps {
 
 export default function ShoppingCart(props: ShoppingCartProps) {
 	const { cartItems, products } = props;
-	const { isLoading } = useLoadingContext();
-	console.log(isLoading);
+	const { isLoading } = useLoadingContext() || {};
 	const classes = useStyles();
 
 	if (!cartItems || !products) {

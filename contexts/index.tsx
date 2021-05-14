@@ -36,7 +36,6 @@ interface appContext {
 
 export function AppWrapper(props: wrapperProps) {
 	const { children } = props;
-	console.log(children);
 	const { data: cartItems } = useQuery(LIST_CART);
 	const { data: productItems } = useQuery(LIST_PRODUCT);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,8 +56,6 @@ export function useCartContext() {
 	if (!appContext.cartItems) {
 		return [];
 	}
-	console.log(appContext);
-	console.log(appContext.cartItems);
 	return appContext.cartItems.listCart;
 }
 
