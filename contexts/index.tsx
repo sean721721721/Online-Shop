@@ -1,43 +1,27 @@
-import { createContext, useContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
+import { createContext, useContext, useState, useEffect, Dispatch, SetStateAction, PropsWithChildren } from 'react';
 import { useQuery } from '@apollo/client';
 import { LIST_CART, LIST_PRODUCT } from '../lib/api';
 import { sliceProductsBy } from '../lib/helper';
 import { AMOUNT_OF_SHOWING_PRODUCTS } from '../lib/constants';
-import { Cart, Product } from '../server/interface';
+import { CartItems, ProductItems } from '../server/interface';
 
 const AppContext = createContext({});
 
-interface wrapperProps {
-	children: ReactNode;
-}
-
-interface cartProduct extends Cart {
-	__typename: string;
-}
-
-interface cartItems {
-	listCart: cartProduct[];
-}
-
-interface productItem extends Product {
-	__typename: string;
-}
-
-interface loading {
+interface Loading {
 	isLoading: boolean;
 	setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-interface appContext {
-	cartItems?: cartItems;
-	productItems?: { listProduct: productItem[] };
-	loading?: loading;
+interface AppContext {
+	cartItems?: CartItems;
+	productItems?: ProductItems;
+	loading?: Loading;
 }
 
-export function AppWrapper(props: wrapperProps) {
+export function AppWrapper(props: PropsWithChildren<unknown>) {
 	const { children } = props;
-	const { data: cartItems } = useQuery(LIST_CART);
-	const { data: productItems } = useQuery(LIST_PRODUCT);
+	const { data: cartItems } = useQuery<CartItems>(LIST_CART);
+	const { data: productItems } = useQuery<ProductItems>(LIST_PRODUCT);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const loading = { isLoading, setIsLoading };
 
@@ -52,7 +36,7 @@ export function AppWrapper(props: wrapperProps) {
 }
 
 export function useCartContext() {
-	const appContext: appContext = useContext(AppContext);
+	const appContext: AppContext = useContext(AppContext);
 	if (!appContext.cartItems) {
 		return [];
 	}
@@ -60,7 +44,7 @@ export function useCartContext() {
 }
 
 export function useProductContext() {
-	const appContext: appContext = useContext(AppContext);
+	const appContext: AppContext = useContext(AppContext);
 	const { productItems } = appContext;
 	if (!productItems || !productItems.listProduct) return [];
 	const slicebProduct = sliceProductsBy(productItems.listProduct, AMOUNT_OF_SHOWING_PRODUCTS);
@@ -68,6 +52,6 @@ export function useProductContext() {
 }
 
 export function useLoadingContext() {
-	const appContext: appContext = useContext(AppContext);
+	const appContext: AppContext = useContext(AppContext);
 	return appContext.loading;
 }
